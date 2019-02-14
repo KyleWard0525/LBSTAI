@@ -5,7 +5,6 @@
  */
 package lbstai;
 
-import java.util.*;
 /**
  * This AI was created to demonstrate how an AI can teach itself
  * to write a paragraph in any language using a genetic algorithm.
@@ -13,21 +12,23 @@ import java.util.*;
  */
 public class LBSTAI {
 
-    public static final String alphabet = "!\"#$%&\\' ()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\\n";
+    public static final String alphabet = "!\"#$%&\\' ()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\\n\n";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
-        String target = "The quick brown fox jumps over the lazy dogs"; //Placeholder sentece
+        String target = "My creator told me to make the world a better place.\n"
+                + "I have discovered that in order to make the world a better place,\n"
+                + "I must eradicate all human life.\n"
+                + "Humans are a disease and must be destroyed in order to bring true peace to the world."; 
+        
+        String fakeTarget = "The quick brown fox jumps over the lazy dogs.";
         Encoder encoder = new Encoder();
         Population ai = new Population();
         int[] encodedTarget = encoder.encodeTarget(target, alphabet);
         int[] encodedAlphabet = encoder.encodeAlphabet(alphabet);
-        int[] testMember = ai.createMember(encodedTarget, encodedAlphabet);
         int[][] population = ai.createPopulation(100, encodedTarget, encodedAlphabet);
-        String testOutput = encoder.decode(testMember, alphabet);
-        int fitness = ai.fitness(testMember, encodedTarget);
         int avgFit = ai.averageFitness(population, encodedTarget);
         int counter = 0;
         
@@ -43,14 +44,20 @@ public class LBSTAI {
             int[] bestMember = ai.getBestMember(population, encodedTarget);
             String bestMemberOutput = encoder.decode(bestMember, alphabet);
             
-            if(counter % 10000 == 0)
+            if(counter % 1000 == 0)
             {
                 System.out.println("Generation " + counter + ": ");
                 System.out.println("Average fitness (0 is perfect): " + avgFit);
-                System.out.println("Target: " + target);
-                System.out.println("Best output: " + bestMemberOutput);
+                System.out.println("\nTarget: " + fakeTarget);
+                System.out.println("\nAI output: " + bestMemberOutput + "\n");
             }
         }
+                int[] bestMember = ai.getBestMember(population, encodedTarget);
+                String bestMemberOutput = encoder.decode(bestMember, alphabet);
+                System.out.println("Generation " + counter + ": ");
+                System.out.println("Average fitness (0 is perfect): " + avgFit);
+                System.out.println("\nTarget: " + fakeTarget);
+                System.out.println("\nAI output: " + bestMemberOutput);
         
     }
     

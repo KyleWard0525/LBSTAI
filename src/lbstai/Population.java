@@ -110,7 +110,7 @@ public class Population {
         int numSurvivors = (int) (population.length * survivalRate);
         Random rand = new Random();
         
-        ArrayList<int[]> parents = new ArrayList<int[]>();
+        ArrayList<int[]> parents = new ArrayList<>();
         double randomSelection = 0.024; //2.4% chance of randomly selecting another member (for genetic diversity)
         int[] fitnessScores = new int[population.length];
         
@@ -143,8 +143,7 @@ public class Population {
                 parents.add(population[i]);
             }
         }
-        int[][] parentsArray = convertTo2DIntArray(parents);
-        return parentsArray;
+        return convertTo2DIntArray(parents);
     }
     
     /**
@@ -161,7 +160,7 @@ public class Population {
         double mutationChance = 0.023; //2.3% chance that a parent's element may be mutated
         Random rand = new Random(); //Random number generator
         int numChildren = population.length - parents.length; //Number of children needed for full population
-        ArrayList<int[]> children = new ArrayList<int[]>();
+        ArrayList<int[]> children = new ArrayList<>();
         
         //Loop through the members in parents and possibly mutate
         for(int[] member : parents)
@@ -215,7 +214,7 @@ public class Population {
      */
     public int[][] getNextGeneration(int[][] population, double survivalRate, int[] encodedTarget, int[] encodedAlphabet)
     {
-        ArrayList<int[]> nextGen = new ArrayList<int[]>();
+        ArrayList<int[]> nextGen = new ArrayList<>();
         int[][] parents = getParents(population, survivalRate, encodedTarget);
         int[][] children = getChildren(population, parents, encodedAlphabet);
         
@@ -243,7 +242,7 @@ public class Population {
     public int[] getBestMember(int[][] population, int[] encodedTarget)
     {
         int[] fitnessScores = new int[population.length];
-        int highestScoreIndex = 0;
+        int highestScoreIndex;
         
         //Get the fitness scores of all members in the population
         for(int i = 0; i < population.length; i++)
