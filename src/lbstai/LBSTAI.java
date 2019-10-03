@@ -5,6 +5,8 @@
  */
 package lbstai;
 
+import java.util.Scanner;
+
 /**
  * This AI was created to demonstrate how an AI can teach itself
  * to write a paragraph in any language using a genetic algorithm.
@@ -46,19 +48,57 @@ public class LBSTAI {
             
             if(counter % 1000 == 0)
             {
+                try{
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
                 System.out.println("Generation " + counter + ": ");
                 System.out.println("Average fitness (0 is perfect): " + avgFit);
-                System.out.println("\nTarget: " + fakeTarget);
+                System.out.println("\nTarget Sentence: " + fakeTarget);
                 System.out.println("\nAI output: " + bestMemberOutput + "\n");
+                
+                int evoChanges = population.length * alphabet.length() * counter;
+                String evoString = Integer.toString(evoChanges);
+                String[] evoArray = evoString.split("");
+                evoString = " ";
+                
+                for(int i = 0; i < evoArray.length; i++)
+                {
+                    evoString = evoString.concat(evoArray[i]);
+                    if( i % 3 == 0)
+                    {
+                        evoString = evoString.concat(",");
+                    }
+                }
+                
+                System.out.println("Total Number of Evolutionary Changes: " + evoString);
             }
         }
+                 try{
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
                 int[] bestMember = ai.getBestMember(population, encodedTarget);
                 String bestMemberOutput = encoder.decode(bestMember, alphabet);
                 System.out.println("Generation " + counter + ": ");
                 System.out.println("Average fitness (0 is perfect): " + avgFit);
                 System.out.println("\nTarget: " + fakeTarget);
                 System.out.println("\nAI output: " + bestMemberOutput);
+                System.out.println("\n\n");
+                System.out.println("Survival Rate: 10%");
+                System.out.println("Random Selection Chance: 2.4%");
+                System.out.println("Random Mutation Chance: 2.3%");
+                
+                
         
+                Scanner sc = new Scanner(System.in);
+                sc.nextLine();
     }
     
 }
