@@ -120,7 +120,6 @@ public class Population {
             fitnessScores[i] = fitness(population[i], encodedTarget);
         }
         
-        //fitnessScores = sortScores(fitnessScores); //Sort scores in ascending order
         
         //Populate best members
         for(int i = 0; i < numSurvivors; i++)
