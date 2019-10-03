@@ -60,21 +60,6 @@ public class LBSTAI {
                 System.out.println("\nTarget Sentence: " + fakeTarget);
                 System.out.println("\nAI output: " + bestMemberOutput + "\n");
                 
-                int evoChanges = population.length * alphabet.length() * counter;
-                String evoString = Integer.toString(evoChanges);
-                String[] evoArray = evoString.split("");
-                evoString = " ";
-                
-                for(int i = 0; i < evoArray.length; i++)
-                {
-                    evoString = evoString.concat(evoArray[i]);
-                    if( i % 3 == 0)
-                    {
-                        evoString = evoString.concat(",");
-                    }
-                }
-                
-                System.out.println("Total Number of Evolutionary Changes: " + evoString);
             }
         }
                  try{
